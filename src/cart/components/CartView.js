@@ -6,15 +6,19 @@ import {
     DrawerOverlay,
     DrawerContent,
     DrawerCloseButton,
-    Button,
-    Input
+    Text,
+    Divider,
+    Stack,
+    Box,
+    Button
 } from '@chakra-ui/react'
-import { useModalCart } from '../hooks'
+
+import { useCart, useModalCart } from '../hooks'
+import ItemCart from './ItemCart';
 
 const CartView = (props) => {
-
     const { toggleModal } = useModalCart()
-
+    const { items } = useCart();
     const {
         isOpen,
     } = props
@@ -25,8 +29,8 @@ const CartView = (props) => {
             isOpen={isOpen}
             placement='right'
             onClose={toggleModal}
+            size="sm"
             {...props}
-        // finalFocusRef={btnRef}
         >
             <DrawerOverlay />
             <DrawerContent>
@@ -34,14 +38,31 @@ const CartView = (props) => {
                 <DrawerHeader>Create your account</DrawerHeader>
 
                 <DrawerBody>
-                    <Input placeholder='Type here...' />
+                    {Boolean(items.length) && items.map(({ product, count }) =>
+                        <ItemCart key={product.name} product={product} count={count} />
+                    )}
                 </DrawerBody>
 
-                <DrawerFooter>
-                    <Button variant='outline' mr={3} onClick={toggleModal}>
-                        Enviar orden
-                    </Button>
-                </DrawerFooter>
+
+                <Box paddingY="6" paddingX="5" width="100%">
+                    <Divider />
+                    <Stack paddingY="4" direction="row" justifyContent="space-between">
+                        <Box fontWeight="600">
+                            Total:
+                        </Box>
+                        <Box fontWeight="600">
+
+                            2000
+                        </Box>
+                    </Stack>
+                    <Stack alignItems="center" justifyContent="center" w="100%">
+                        <Button marginX="auto" colorScheme="purple">
+                            Process to checkout
+                        </Button>
+                    </Stack>
+
+                </Box>
+
             </DrawerContent>
         </Drawer>
     )

@@ -4,7 +4,7 @@ import { data } from '../api';
 import Filters from '../components/Filters';
 import ProductList from '../components/ProductList';
 import CartView from '../../cart/components/CartView'
-import { useCart, useModalCart, useCartCoutItems } from '../../cart/hooks';
+import { useCart, useModalCart, useCartCountItems } from '../../cart/hooks';
 
 const FILTERS = [
     'low',
@@ -19,7 +19,7 @@ const Store = () => {
     const { isModalOpen, toggleModal } = useModalCart()
     const { items } = useCart()
 
-    const countItems = useCartCoutItems();
+    const countItems = useCartCountItems();
 
 
     const productsList = useMemo(() => {

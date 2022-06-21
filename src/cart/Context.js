@@ -1,6 +1,5 @@
 import { useState, createContext, useMemo } from "react";
 import produce from "immer";
-import shortid from "shortid";
 
 
 const CartContext = createContext({});
@@ -26,12 +25,26 @@ function CartProvider({ children }) {
     }
 
     const remove = (id) => {
+        if (!cart[id]) return
 
+        setCart(produce((cart) => {
+            delete cart[id]
+        }))
     }
 
     const increase = (id) => {
+        if (!cart[id]) return
+
         setCart(produce((cart) => {
             cart[id].count++
+        }))
+    }
+
+    const decrease = (id) => {
+        if (!cart[id]) return
+
+        setCart(produce((cart) => {
+            cart[id].count--
         }))
     }
 
@@ -44,6 +57,8 @@ function CartProvider({ children }) {
         actions: {
             add,
             remove,
+            increase,
+            decrease,
             toggleModal
         }
     }

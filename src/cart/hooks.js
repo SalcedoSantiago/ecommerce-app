@@ -5,13 +5,17 @@ export const useCart = () => {
     const {
         state: { cart, items },
         actions: {
-            add
+            add,
+            increase,
+            decrease
         }
     } = useContext(CartContext)
 
     return {
         items,
         cart,
+        increase,
+        decrease,
         add
     }
 }
@@ -32,7 +36,7 @@ export const useModalCart = () => {
 }
 
 
-export const useCartCoutItems = () => {
+export const useCartCountItems = () => {
     const {
         state: { items },
     } = useContext(CartContext)
