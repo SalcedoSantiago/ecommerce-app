@@ -8,6 +8,7 @@ function CartProvider({ children }) {
     const [cart, setCart] = useState({});
     const [isModalOpen, toggleModal] = useState(false);
     const items = useMemo(() => [].concat(...Object.values(cart)), [cart]);
+    const total = items.reduce((count, item) => count + item.count, 0);
 
     const add = (product) => {
         if (cart[product.id]) {
@@ -53,6 +54,7 @@ function CartProvider({ children }) {
             cart,
             items,
             isModalOpen,
+            total
         },
         actions: {
             add,

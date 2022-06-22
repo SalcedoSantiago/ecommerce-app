@@ -6,6 +6,8 @@ import theme from './theme';
 import Layout from './App/components/Layout';
 import Home from './App/screens/Home';
 import { CartProvider } from './cart/Context';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import CartScreen from './cart/screens/Cart';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -15,7 +17,12 @@ root.render(
     <ChakraProvider theme={theme}>
       <CartProvider>
         <Layout>
-          <Home />
+          <Router>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/cart" element={<CartScreen />} />
+            </Routes>
+          </Router>
         </Layout>
       </CartProvider>
     </ChakraProvider>

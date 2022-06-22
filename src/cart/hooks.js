@@ -3,7 +3,7 @@ import { CartContext } from "./Context";
 
 export const useCart = () => {
     const {
-        state: { cart, items },
+        state: { cart, items, total },
         actions: {
             add,
             increase,
@@ -14,6 +14,7 @@ export const useCart = () => {
     return {
         items,
         cart,
+        total,
         increase,
         decrease,
         add
@@ -40,7 +41,6 @@ export const useCartCountItems = () => {
     const {
         state: { items },
     } = useContext(CartContext)
-
 
     return items.reduce((count, item) => count + item.count, 0);
 }

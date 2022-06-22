@@ -6,19 +6,20 @@ import {
     DrawerOverlay,
     DrawerContent,
     DrawerCloseButton,
-    Text,
     Divider,
     Stack,
     Box,
     Button
 } from '@chakra-ui/react'
-
-import { useCart, useModalCart } from '../hooks'
+import { useNavigate } from "react-router-dom";
+import { useCart, useCartCountItems, useModalCart } from '../hooks'
 import ItemCart from './ItemCart';
 
 const CartView = (props) => {
     const { toggleModal } = useModalCart()
     const { items } = useCart();
+    const count = useCartCountItems()
+    const navigate = useNavigate();
     const {
         isOpen,
     } = props
@@ -43,7 +44,6 @@ const CartView = (props) => {
                     )}
                 </DrawerBody>
 
-
                 <Box paddingY="6" paddingX="5" width="100%">
                     <Divider />
                     <Stack paddingY="4" direction="row" justifyContent="space-between">
@@ -51,18 +51,15 @@ const CartView = (props) => {
                             Total:
                         </Box>
                         <Box fontWeight="600">
-
-                            2000
+                            $2000
                         </Box>
                     </Stack>
                     <Stack alignItems="center" justifyContent="center" w="100%">
-                        <Button marginX="auto" colorScheme="purple">
+                        <Button colorScheme="purple" onClick={() => { Boolean(count > 0) && navigate('cart') }}>
                             Process to checkout
                         </Button>
                     </Stack>
-
                 </Box>
-
             </DrawerContent>
         </Drawer>
     )
