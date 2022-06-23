@@ -7,6 +7,7 @@ export const useCart = () => {
         actions: {
             add,
             increase,
+            remove,
             decrease
         }
     } = useContext(CartContext)
@@ -17,6 +18,7 @@ export const useCart = () => {
         total,
         increase,
         decrease,
+        remove,
         add
     }
 }

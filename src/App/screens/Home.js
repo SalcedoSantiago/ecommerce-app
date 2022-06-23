@@ -4,7 +4,7 @@ import Store from '../../product/screens/Store';
 
 const HomeScreen = () => {
     return (
-        <Stack flex={1} >
+        <Stack direction="column" flex={1} height="100%">
             <Store />
         </Stack>
     )

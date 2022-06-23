@@ -1,5 +1,6 @@
 import { Box, Image, Stack, Heading, Text, Button } from '@chakra-ui/react';
 import { useCart } from '../../cart/hooks';
+import { StarIcon } from "@chakra-ui/icons";
 
 
 
@@ -21,6 +22,14 @@ const ProductCard = ({ product }) => {
             <Stack paddingY={4} direction="column" paddingX="3" background="white">
                 <Heading size='md'>{product.name}</Heading>
                 <Text fontWeight="500" color="purple.500">by {product.author}</Text>
+                <Stack direction="row" spacing={1} display="flex" alignItems="center" mt={2}>
+                    <StarIcon color="yellow.300" />
+                    <StarIcon color="yellow.300" />
+                    <StarIcon color="yellow.300" />
+                    <StarIcon color="yellow.700" />
+                    <StarIcon color="yellow.700" />
+                </Stack>
+
                 <Stack direction="row" justifyContent="space-between" align="center" paddingTop={2}>
                     <Text fontWeight="600" fontSize="lg">${product.price}</Text>
                     <Button colorScheme='purple' variant='solid' onClick={() => { add(product) }}>

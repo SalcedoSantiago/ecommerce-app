@@ -14,6 +14,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useCart, useCartCountItems, useModalCart } from '../hooks'
 import ItemCart from './ItemCart';
+import ItemListCart from './ItemListCart';
 
 const CartView = (props) => {
     const { toggleModal } = useModalCart()
@@ -39,9 +40,7 @@ const CartView = (props) => {
                 <DrawerHeader>Create your account</DrawerHeader>
 
                 <DrawerBody>
-                    {Boolean(items.length) && items.map(({ product, count }) =>
-                        <ItemCart key={product.name} product={product} count={count} />
-                    )}
+                    <ItemListCart />
                 </DrawerBody>
 
                 <Box paddingY="6" paddingX="5" width="100%">

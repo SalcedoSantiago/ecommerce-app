@@ -1,10 +1,11 @@
 import { useEffect, useState, useMemo } from 'react';
-import { Spinner, Flex, Stack, Text, Input, Box, Button } from '@chakra-ui/react';
+import { Spinner, Flex, Stack, Text, Input, Box, Button, Center } from '@chakra-ui/react';
 import { data } from '../api';
 import Filters from '../components/Filters';
 import ProductList from '../components/ProductList';
 import CartView from '../../cart/components/CartView'
 import { useCart, useModalCart, useCartCountItems } from '../../cart/hooks';
+import Hero from '../components/Hero';
 
 const FILTERS = [
     'low',
@@ -50,6 +51,7 @@ const Store = () => {
     if (products.length <= 0) {
         return (
             <Stack>
+                <Hero />
                 <Box>
                     <Text align="center" fontWeight="500" paddingY={2}>Search item</Text>
                     <Input placeholder='Searh' value={search} onInput={({ target: { value } }) => setSearch(value)} />
@@ -58,42 +60,45 @@ const Store = () => {
                     <Spinner color='red.500' />
                 </Flex>
             </Stack>
-
         )
     }
 
     return (
-        <Stack>
-            <Box>
-                <Text align="center" fontWeight="500" paddingY={2}>Search item</Text>
-                <Input placeholder='Searh' value={search} onInput={({ target: { value } }) => setSearch(value)} />
-            </Box>
-            <Stack paddingY="5" spacing={8}>
-                <Stack direction="row" spacing={6} >
-                    <Text
-                        fontWeight="500"
-                        paddingY="2"
-                        paddingX="4"
-                    >
-                        {productsList.length} of {products.length}
-                    </Text>
-                    <Filters active={filter} filters={FILTERS} setFilter={setFilter} />
+        <Stack py={6}>
+            <Hero />
+            <Stack height="100%">
+                <Box>
+                    <Text fontWeight="500" paddingY={2}>Search item</Text>
+                    <Input placeholder='Searh' value={search} onInput={({ target: { value } }) => setSearch(value)} />
+                </Box>
+                <Stack paddingY="5" spacing={8}>
+                    <Stack direction="row" spacing={6} >
+                        <Text
+                            fontWeight="500"
+                            paddingY="2"
+                            paddingX="4"
+                        >
+                            {productsList.length} of {products.length}
+                        </Text>
+                        <Filters active={filter} filters={FILTERS} setFilter={setFilter} />
+                    </Stack>
+                    {Boolean(productsList.length) ? <ProductList products={productsList} /> : <Text>No results for: {search}</Text>}
                 </Stack>
-                {Boolean(productsList.length) ? <ProductList products={productsList} /> : <Text>No results for: {search}</Text>}
-            </Stack>
+
+                {isModalOpen &&
+                    <CartView
+                        isOpen
+                        onSubmit={handdleSubmit}
+                    />
+                }
+
+            </Stack >
             <Stack align="center" position="sticky" bottom={0} marginBottom="5" paddingY={3}>
-                <Button onClick={() => { toggleModal(true) }}>
+                <Button colorScheme="purple" onClick={() => { toggleModal(true) }}>
                     <Text>ver carrito {countItems} items</Text>
                 </Button>
             </Stack>
-            {isModalOpen &&
-                <CartView
-                    isOpen
-                    onSubmit={handdleSubmit}
-                />
-            }
-
-        </Stack >
+        </Stack>
     )
 }
 

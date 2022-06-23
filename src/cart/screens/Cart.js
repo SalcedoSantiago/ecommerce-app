@@ -1,44 +1,36 @@
-import { Box, Button, Heading, Stack, } from "@chakra-ui/react"
-import ItemCart from "../components/ItemCart";
+import { Box, Button, Center, Flex, Heading, Stack } from "@chakra-ui/react"
 import { useCart } from '../hooks';
 import { useNavigate } from "react-router-dom";
-
+import Form from "../components/Form";
+import ItemListCart from "../components/ItemListCart";
 
 
 const CartScreen = () => {
     const { items, total } = useCart();
-
     const navigate = useNavigate();
 
-
     return (
-        <Stack direction="column" width="100%" flex={1}>
-            <Box paddingX={30} paddingY="50" height="80vh" >
-                <Box flex={1}>
-                    <Heading>Shopping cart</Heading>
-                    <Stack direction="row">
-                        <Box paddingY={6}>
-                            {items.map(({ product, count }) =>
-                                <ItemCart key={product.price} product={product} count={count} />
-                            )
-                            }
-                        </Box>
+        <Box h="full" paddingY={20}>
+            <Stack direction="column" justify="space-between" h="full" >
+                <Stack direction="row" h="full" spacing={6}>
+                    <Stack flex={1}>
                         <Box>
-                            <Heading>aca la tarjeta</Heading>
+                            <Heading pb={10}>Cart items</Heading>
+                            <ItemListCart />
                         </Box>
                     </Stack>
-
-
-                </Box>
-
-                <Stack direction="row" justifyContent="space-between">
-                    <Button colorScheme="purple" onClick={() => { navigate("/") }} variant='link'>
-                        continue shopping
-                    </Button>
-                    <Heading>{total}</Heading>
+                    <Box>
+                        <Heading pb={10}>Personal info</Heading>
+                        <Form />
+                    </Box>
                 </Stack>
-            </Box>
-        </Stack>
+                <Flex justify={'start'}>
+                    <Button colorScheme="purple" onClick={() => { navigate("/") }} variant='link'>
+                        Continue shopping
+                    </Button>
+                </Flex>
+            </Stack>
+        </Box >
     )
 }
 
