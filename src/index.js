@@ -1,14 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+
 import { ChakraProvider } from "@chakra-ui/react";
-import theme from './theme';
-import Layout from './App/components/Layout';
-import Home from './App/screens/Home';
 import { CartProvider } from './cart/Context';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import theme from './theme';
+
+import Home from './App/screens/Home';
+import Layout from './App/components/Layout';
 import CartScreen from './cart/screens/Cart';
 import NotFound from './App/screens/404';
+import ProductScreen from './product/screens/Product';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -22,6 +25,7 @@ root.render(
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/cart" element={<CartScreen />} />
+              <Route path="/product/:id" element={<ProductScreen />} />
               <Route path="/404" element={<NotFound />} />
             </Routes>
           </Router>

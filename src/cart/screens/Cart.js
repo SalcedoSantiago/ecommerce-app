@@ -12,11 +12,14 @@ const CartScreen = () => {
     return (
         <Box h="full" paddingY={20}>
             <Stack direction="column" justify="space-between" h="full" >
-                <Stack direction="row" h="full" spacing={6}>
+                <Stack direction="row" h="full" spacing={6} maxH="100%" overflow={'hidden'}>
                     <Stack flex={1}>
-                        <Box>
+                        <Box maxH="100%"> 
                             <Heading pb={10}>Cart items</Heading>
-                            <ItemListCart />
+                            <Box maxH="650px" overflowY="scroll">
+                                <ItemListCart />
+
+                            </Box>
                         </Box>
                     </Stack>
                     <Box>
@@ -24,7 +27,7 @@ const CartScreen = () => {
                         <Form />
                     </Box>
                 </Stack>
-                <Flex justify={'start'}>
+                <Flex justify={'start'} pt={6}>
                     <Button colorScheme="purple" onClick={() => { navigate("/") }} variant='link'>
                         Continue shopping
                     </Button>

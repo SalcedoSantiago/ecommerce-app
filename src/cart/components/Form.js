@@ -41,6 +41,7 @@ const Form = () => {
                             size="sm"
                             rounded="md"
                             w="full"
+                            required
                         />
                     </Box>
                     <Box flex={1}>
@@ -62,6 +63,7 @@ const Form = () => {
                             size="sm"
                             rounded="md"
                             w="full"
+                            required
                         />
                     </Box>
                 </Stack>
@@ -86,6 +88,7 @@ const Form = () => {
                             size="sm"
                             w="full"
                             rounded="md"
+                            required
                         >
                             <option>United States</option>
                             <option>Canada</option>
@@ -113,6 +116,7 @@ const Form = () => {
                         size="sm"
                         w="full"
                         rounded="md"
+                        required
                     />
                 </Stack>
                 <Stack direction="row">
@@ -137,6 +141,7 @@ const Form = () => {
                             size="sm"
                             w="full"
                             rounded="md"
+                            required
                         />
                     </Box>
 
@@ -161,6 +166,7 @@ const Form = () => {
                             size="sm"
                             w="full"
                             rounded="md"
+                            required
                         />
                     </Box>
 
@@ -185,6 +191,7 @@ const Form = () => {
                             size="sm"
                             w="full"
                             rounded="md"
+                            required
                         />
                     </Box>
                 </Stack>
@@ -197,6 +204,7 @@ const Form = () => {
                 <Button
                     type="submit"
                     colorScheme="purple"
+                    
                 >
                     Send
                 </Button>

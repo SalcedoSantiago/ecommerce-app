@@ -16,25 +16,10 @@ export const useCart = () => {
         items,
         cart,
         total,
+        add,
         increase,
         decrease,
         remove,
-        add
-    }
-}
-
-
-export const useModalCart = () => {
-    const {
-        state: { isModalOpen },
-        actions: {
-            toggleModal
-        }
-    } = useContext(CartContext)
-
-    return {
-        isModalOpen,
-        toggleModal
     }
 }
 

@@ -1,14 +1,12 @@
 import { useState, createContext, useMemo } from "react";
 import produce from "immer";
 
-
 const CartContext = createContext({});
 
 function CartProvider({ children }) {
     const [cart, setCart] = useState({});
-    const [isModalOpen, toggleModal] = useState(false);
     const items = useMemo(() => [].concat(...Object.values(cart)), [cart]);
-    const total = items.reduce((count, item) => count + item.count, 0);
+    const total = items.reduce((count, item) => count + (item.product.price * item.count), 0);
 
     const add = (product) => {
         if (cart[product.id]) {
@@ -37,7 +35,7 @@ function CartProvider({ children }) {
         if (!cart[id]) return
 
         setCart(produce((cart) => {
-            cart[id].count++
+            cart[id].count++;
         }))
     }
 
@@ -53,7 +51,6 @@ function CartProvider({ children }) {
         state: {
             cart,
             items,
-            isModalOpen,
             total
         },
         actions: {
@@ -61,7 +58,6 @@ function CartProvider({ children }) {
             remove,
             increase,
             decrease,
-            toggleModal
         }
     }
     return (
