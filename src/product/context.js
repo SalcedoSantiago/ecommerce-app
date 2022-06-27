@@ -5,8 +5,8 @@ const ProductContext = createContext({});
 
 const filtersType = [
     'default',
-    'low',
-    'high',
+    'lowest',
+    'highest',
 ]
 
 function ProductProvider({ children }) {
@@ -18,7 +18,7 @@ function ProductProvider({ children }) {
     useEffect(() => {
         setTimeout(() => {
             const productsItems = JSON.parse(window.localStorage.getItem("products"));
-            if (productsItems) {
+            if (Boolean(productsItems.length)) {
                 setProducts(productsItems);
             } else {
                 window.localStorage.setItem("products", JSON.stringify(data));
@@ -31,9 +31,9 @@ function ProductProvider({ children }) {
     const productsList = useMemo(() => {
         const productFilter = search && products.filter(({ name }) => name.toLowerCase().includes(search.toLowerCase())) || products;
         switch (filter) {
-            case 'low':
+            case 'lowest':
                 return [...productFilter].sort((a, b) => a.price - b.price);
-            case 'high':
+            case 'highest':
                 return [...productFilter].sort((a, b) => b.price - a.price);
             case 'default':
             default:

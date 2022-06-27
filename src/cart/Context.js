@@ -8,15 +8,15 @@ function CartProvider({ children }) {
     const items = useMemo(() => [].concat(...Object.values(cart)), [cart]);
     const total = items.reduce((count, item) => count + (item.product.price * item.count), 0);
 
-    const add = (product) => {
+    const add = (product, count = false) => {
         if (cart[product.id]) {
-            increase(product.id)
+            increase(product.id, count)
         } else {
             setCart(produce((cart) => {
                 cart[product.id] = {
                     id: product.id,
                     product,
-                    count: 1,
+                    count: count || 1,
                 }
             }
             ))
@@ -31,20 +31,28 @@ function CartProvider({ children }) {
         }))
     }
 
-    const increase = (id) => {
+    const increase = (id, count = false) => {
         if (!cart[id]) return
 
         setCart(produce((cart) => {
-            cart[id].count++;
+            cart[id].count = count ? cart[id].count + count : cart[id].count + 1;
         }))
     }
 
     const decrease = (id) => {
         if (!cart[id]) return
 
-        setCart(produce((cart) => {
-            cart[id].count--
-        }))
+        if ((cart[id].count - 1) == 0) {
+            remove(id);
+        } else {
+            setCart(produce((cart) => {
+                cart[id].count--
+            }))
+        }
+    }
+
+    const removeAll = () => {
+        setCart({})
     }
 
     const value = {
@@ -58,6 +66,7 @@ function CartProvider({ children }) {
             remove,
             increase,
             decrease,
+            removeAll
         }
     }
     return (

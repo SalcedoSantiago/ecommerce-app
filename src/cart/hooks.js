@@ -8,6 +8,7 @@ export const useCart = () => {
             add,
             increase,
             remove,
+            removeAll,
             decrease
         }
     } = useContext(CartContext)
@@ -20,6 +21,7 @@ export const useCart = () => {
         increase,
         decrease,
         remove,
+        removeAll
     }
 }
 

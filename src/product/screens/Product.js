@@ -1,3 +1,6 @@
+import { useState, useEffect } from 'react';
+import { ArrowLeftIcon } from "@chakra-ui/icons";
+
 import {
     Box,
     Spinner,
@@ -10,20 +13,32 @@ import {
     Heading,
     SimpleGrid,
     StackDivider,
+    NumberInput,
+    NumberInputField,
+    NumberInputStepper,
+    NumberDecrementStepper,
+    NumberIncrementStepper,
 } from '@chakra-ui/react';
-import { StarIcon } from "@chakra-ui/icons";
 import { useParams, useNavigate } from 'react-router-dom'
 import { useCart } from '../../cart/hooks';
 import CartView from '../../cart/components/CartView';
 import { useProducts } from '../hook';
+import ProductList from '../components/ProductList';
 
 const Product = () => {
     const { add } = useCart();
     const navigate = useNavigate();
     const { id } = useParams();
     const { products, getProductById } = useProducts()
+    const [count, setCount] = useState(1);
 
     const product = getProductById(id)
+    const productsRelated = products.filter(({ author, name }) => author == product.author && name != product.name);
+
+    useEffect(() => {
+        setCount(1);
+    }, [product])
+
 
     if (!Boolean(product?.id)) {
         return (
@@ -33,10 +48,33 @@ const Product = () => {
         )
     }
 
+    const handleCounter = (increment = false) => {
+        setCount((count) => increment ? count + 1 : count - 1)
+    }
+
     return (
-        <Container maxW={'7xl'}>
+        <Container maxW={'7xl'} position="relative">
+            <Button
+                onClick={() => { navigate("/") }}
+                colorScheme="purple"
+                boxShadow="md"
+                cursor="pointer"
+                left={0}
+                top={0}
+                marginTop={10}
+                paddingX={4}
+                paddingY={3}
+                position="absolute"
+            >
+                <ArrowLeftIcon
+                    color="white"
+                />
+                <Text paddingX={2} display="inline-block">Back to Shopping</Text>
+            </Button>
             <SimpleGrid
+                max-height={'600px'}
                 columns={2}
+                alignItems="center"
                 spacing={{ base: 8, md: 10 }}
                 py={{ base: 18, md: 24 }}>
                 <Flex>
@@ -61,7 +99,7 @@ const Product = () => {
                         </Heading>
                         <Text
                             color={'gray.900'}
-                            fontWeight={400}
+                            fontWeight={600}
                             fontSize={'2xl'}>
                             ${(product.price).toLocaleString('ar-AR')}
                         </Text>
@@ -78,18 +116,31 @@ const Product = () => {
                             {product.description}
                         </Text>
                     </Stack>
-                  
-                    <Button colorScheme="purple" onClick={() => { add(product) }}>
-                        Add to cart
-                    </Button>
-                </Stack>
 
-                <Flex justify={'start'} pt={6}>
-                    <Button colorScheme="purple" onClick={() => { navigate("/") }} variant='link'>
-                        Continue shopping
-                    </Button>
-                </Flex>
+                    <Stack align="center" spacing={5} direction="row">
+                        <NumberInput size='lg' maxW={9999} defaultValue={1} min={1} value={count} >
+                            <NumberInputField />
+                            <NumberInputStepper>
+                                <NumberIncrementStepper onClick={() => { handleCounter(true) }} />
+                                <NumberDecrementStepper onClick={() => { count > 1 && handleCounter() }} />
+                            </NumberInputStepper>
+                        </NumberInput>
+                        <Button colorScheme="purple" onClick={() => { add(product, count) }}>
+                            Add to cart
+                        </Button>
+                    </Stack>
+
+                </Stack>
             </SimpleGrid>
+            <Heading py={5} fontSize="4xl" fontWeight={600} color="purple.800">Products related</Heading>
+            <Box w="full">
+                <ProductList products={Boolean(productsRelated.length) ? productsRelated : products.split(0, 3)} />
+            </Box>
+            <Flex justify={'start'} pt={6}>
+                <Button colorScheme="purple" onClick={() => { navigate("/") }} variant='link'>
+                    Continue shopping
+                </Button>
+            </Flex>
             <CartView />
         </Container>
     );

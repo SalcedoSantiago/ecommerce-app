@@ -12,6 +12,7 @@ const Filters = ({ active, filters, setFilter }) => {
                     borderRadius={9999}
                     paddingY="2"
                     paddingX="6"
+                    h="auto"
                     fontWeight="500"
                     background={active == filter ? 'purple.700' : 'white'}
                     color={active == filter ? 'white' : 'primary.500'}

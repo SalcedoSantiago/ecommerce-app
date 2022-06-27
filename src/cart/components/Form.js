@@ -13,7 +13,7 @@ import { useCart } from '../hooks';
 
 
 const Form = () => {
-    const { items } = useCart();
+    const { items, removeAll } = useCart();
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
@@ -37,6 +37,8 @@ const Form = () => {
             alert('cart is empty')
             return;
         }
+
+        removeAll();
         navigate("/order");
     }
 

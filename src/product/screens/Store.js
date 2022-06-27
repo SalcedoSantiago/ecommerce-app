@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import { Spinner, Flex, Stack, Text, Input, Box, Button, Center, InputGroup, InputLeftElement, Icon } from '@chakra-ui/react';
+import { Spinner, Flex, Stack, Text, Input, Box, InputGroup, InputLeftElement } from '@chakra-ui/react';
 import { SearchIcon } from '@chakra-ui/icons'
 import Filters from '../components/Filters';
 import ProductList from '../components/ProductList';
 import CartView from '../../cart/components/CartView'
 import Hero from '../components/Hero';
 import { useFilter, useProducts, useSearch } from '../hook';
+import NotFound from '../components/NotFound';
 
 
 const Store = () => {
@@ -17,7 +17,7 @@ const Store = () => {
 
     if (products.length <= 0) {
         return (
-            <Stack py={6}>
+            <Stack pb={6}>
                 <Hero />
                 <Box>
                     <Text fontWeight="500" paddingY={2}>Search item</Text>
@@ -31,7 +31,7 @@ const Store = () => {
     }
 
     return (
-        <Stack py={6}>
+        <Stack pb={6}>
             <Hero />
             <Stack height="100%" flex={1}>
                 <Stack paddingY="5" spacing={12}>
@@ -63,7 +63,9 @@ const Store = () => {
                         </InputGroup>
                         <Filters active={filter} filters={filtersType} setFilter={setFilter} />
                     </Stack>
-                    {Boolean(productsList.length) ? <ProductList products={productsList} /> : <Text>No results for: {search}</Text>}
+                    {Boolean(productsList.length) ? <ProductList products={productsList} /> :
+                        <NotFound />
+                    }
                 </Stack>
             </Stack >
             <CartView />
