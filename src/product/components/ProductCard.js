@@ -1,17 +1,26 @@
-import { Box, Image, Stack, Heading, Text, Button } from '@chakra-ui/react';
+import { Box, Stack, Heading, Text, Button } from '@chakra-ui/react';
 import { useCart } from '../../cart/hooks';
 import { StarIcon } from "@chakra-ui/icons";
 import { Link } from 'react-router-dom';
 
 
 const ProductCard = ({ product }) => {
+
     const { add } = useCart()
+    const {
+        name,
+        image,
+        author,
+        price,
+        rate,
+        id
+    } = product;
 
     return (
         <Box padding={2} >
-            <Link to={`/product/${product.id}`}>
+            <Link to={`/product/${id}`}>
                 <Box
-                    backgroundImage={product.image}
+                    backgroundImage={image || 'https://via.placeholder.com/150'}
                     backgroundSize="cover"
                     backgroundPosition="center"
                     width="100%"
@@ -21,18 +30,17 @@ const ProductCard = ({ product }) => {
                 />
             </Link>
             <Stack paddingY={4} direction="column" paddingX="3" background="white">
-                <Heading size='md'>{product.name}</Heading>
-                <Text fontWeight="500" color="purple.500">by {product.author}</Text>
+                <Heading size='md'>{name || 'No unable'}</Heading>
+                <Text fontWeight="500" color="purple.500">by {author || 'Vicent'}</Text>
                 <Stack direction="row" spacing={1} display="flex" alignItems="center" mt={2}>
-                    <StarIcon color="yellow.300" />
-                    <StarIcon color="yellow.300" />
-                    <StarIcon color="yellow.300" />
-                    <StarIcon color="yellow.700" />
-                    <StarIcon color="yellow.700" />
+                    {[1, 2, 3, 4, 5].map((index) =>
+                        <StarIcon key={index} color={rate >= index ? 'yellow.300' : 'yellow.700'} />
+                    )
+                    }
                 </Stack>
 
                 <Stack direction="row" justifyContent="space-between" align="center" paddingTop={2}>
-                    <Text fontWeight="600" fontSize="lg">${product.price}</Text>
+                    <Text fontWeight="600" fontSize="lg">${price.toLocaleString('ar-AR') || 0}</Text>
                     <Button colorScheme='purple' zIndex={2} variant='solid' onClick={() => { add(product) }}>
                         Agregar
                     </Button>

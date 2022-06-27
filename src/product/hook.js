@@ -5,6 +5,8 @@ export const useProducts = () => {
     const {
         state: {
             productsList,
+            total,
+            products
         },
         actions: {
             getProductById
@@ -13,7 +15,9 @@ export const useProducts = () => {
 
     return {
         productsList,
-        getProductById
+        getProductById,
+        total,
+        products
     }
 }
 

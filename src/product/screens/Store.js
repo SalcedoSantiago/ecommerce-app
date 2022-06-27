@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Spinner, Flex, Stack, Text, Input, Box, Button, Center } from '@chakra-ui/react';
+import { Spinner, Flex, Stack, Text, Input, Box, Button, Center, InputGroup, InputLeftElement, Icon } from '@chakra-ui/react';
+import { SearchIcon } from '@chakra-ui/icons'
 import Filters from '../components/Filters';
 import ProductList from '../components/ProductList';
 import CartView from '../../cart/components/CartView'
@@ -9,13 +10,12 @@ import { useFilter, useProducts, useSearch } from '../hook';
 
 const Store = () => {
     const [search, setSearch] = useSearch();
-    const { productsList, total } = useProducts()
+    const { productsList, total, products } = useProducts()
     const { filter, setFilter, filtersType } = useFilter();
 
 
 
-    if (productsList.length <= 0) {
-
+    if (products.length <= 0) {
         return (
             <Stack py={6}>
                 <Hero />
@@ -34,19 +34,33 @@ const Store = () => {
         <Stack py={6}>
             <Hero />
             <Stack height="100%" flex={1}>
-                <Box>
-                    <Text fontWeight="500" paddingY={2}>Search item</Text>
-                    <Input placeholder='Searh' value={search} onInput={({ target: { value } }) => setSearch(value)} />
-                </Box>
-                <Stack paddingY="5" spacing={8}>
-                    <Stack direction="row" spacing={6} >
-                        <Text
-                            fontWeight="500"
-                            paddingY="2"
-                            paddingX="4"
-                        >
-                            {productsList.length} of {total}
+                <Stack paddingY="5" spacing={12}>
+                    <Stack direction="row" spacing={6} w="100%" >
+                        <Text fontWeight="500" paddingY="2" paddingX="4" display={'inline-block'} >
+                            {productsList.length} of {total.toLocaleString('ar-Ar')}
                         </Text>
+                        <InputGroup
+                            alignItems="center"
+                            height={10}
+                            w="350px"
+                            rounded='lg'
+                            boxShadow={'2xl'}
+                        >
+                            <InputLeftElement
+                                children={<SearchIcon color="gray.300" name="search" />}
+                                color="gray.300"
+                                fontSize="1.2em"
+                                top="inherit"
+                            />
+                            <Input
+                                fontSize="md"
+                                paddingLeft={10}
+                                variant="unstyled"
+                                placeholder="Search..."
+                                value={search}
+                                onInput={({ target: { value } }) => setSearch(value)}
+                            />
+                        </InputGroup>
                         <Filters active={filter} filters={filtersType} setFilter={setFilter} />
                     </Stack>
                     {Boolean(productsList.length) ? <ProductList products={productsList} /> : <Text>No results for: {search}</Text>}

@@ -12,6 +12,7 @@ import Layout from './App/components/Layout';
 import CartScreen from './cart/screens/Cart';
 import NotFound from './App/screens/404';
 import ProductScreen from './product/screens/Product';
+import OrderScreen from './cart/screens/Order'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -26,6 +27,7 @@ root.render(
               <Route path="/" element={<Home />} />
               <Route path="/cart" element={<CartScreen />} />
               <Route path="/product/:id" element={<ProductScreen />} />
+              <Route path="/order" element={<OrderScreen />} />
               <Route path="/404" element={<NotFound />} />
             </Routes>
           </Router>

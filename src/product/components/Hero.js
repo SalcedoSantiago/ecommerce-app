@@ -11,7 +11,7 @@ const Hero = () => {
     return (
         <Flex
             width="full"
-            height="400px"
+            height="300px"
             backgroundImage={
                 'url(https://i0.wp.com/arteyalgomas.com/wp-content/uploads/2020/01/Van_Gogh.-Campo-de-trigo-con-cuervos.-1890.jpg?resize=1140%2C713&ssl=1)'
             }

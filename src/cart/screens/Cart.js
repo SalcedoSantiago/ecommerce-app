@@ -14,13 +14,18 @@ const CartScreen = () => {
             <Stack direction="column" justify="space-between" h="full" >
                 <Stack direction="row" h="full" spacing={6} maxH="100%" overflow={'hidden'}>
                     <Stack flex={1}>
-                        <Box maxH="100%"> 
+                        <Stack maxH="full" id="1" h="full">
                             <Heading pb={10}>Cart items</Heading>
-                            <Box maxH="650px" overflowY="scroll">
-                                <ItemListCart />
-
-                            </Box>
-                        </Box>
+                            <Stack direction="column" flex={1} justifyContent="space-between">
+                                <Box maxH="550px" overflowY="scroll" >
+                                    <ItemListCart />
+                                </Box>
+                            </Stack>
+                            <Stack direction="row" justifyContent="space-between">
+                                <Heading fontSize="2xl">TOTAL: </Heading>
+                                <Heading fontSize="2xl" color="purple" paddingRight={3}>${total.toLocaleString('ar-AR')}</Heading>
+                            </Stack>
+                        </Stack>
                     </Stack>
                     <Box>
                         <Heading pb={10}>Personal info</Heading>

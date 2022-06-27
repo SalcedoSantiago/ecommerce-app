@@ -9,6 +9,15 @@ import { CloseIcon } from '@chakra-ui/icons'
 
 
 const ItemCart = ({ product, count }) => {
+
+    const {
+        price,
+        name,
+        image,
+        author,
+        id
+    } = product;
+
     const { increase, decrease, remove } = useCart()
     const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } = useNumberInput(
         {
@@ -23,21 +32,21 @@ const ItemCart = ({ product, count }) => {
 
     return (
         <Stack direction="row" spacing={4} paddingBottom={9} width="100%">
-            <Avatar size='2xl' src={product.image} />
+            <Avatar size='2xl' src={image || 'https://via.placeholder.com/150'} />
             <Box paddingLeft={3} paddingRight={6}>
                 <Stack direction="row" justifyContent="space-between" alignItems="center" cursor="pointer">
-                    <Heading fontSize="md">{product.name}</Heading>
-                    <CloseIcon fontSize="md" onClick={() => { remove(product.id) }} />
+                    <Heading fontSize="md">{name || "No mane"}</Heading>
+                    <CloseIcon fontSize="md" onClick={() => { remove(id) }} />
                 </Stack>
-                <Flex >by <Text paddingLeft={2} color="purple.300">{product.author}</Text></Flex>
+                <Flex >by <Text paddingLeft={2} color="purple.300">{author || 'Vicent'}</Text></Flex>
                 <Stack direction="row" marginTop={4} justifyContent="space-between">
-                    <Box fontWeight="500">{count}x {product.price}</Box>
-                    <Box fontWeight="500">${count * product.price}</Box>
+                    <Box fontWeight="500"><Text display="inline" color="purple">{count}x</Text>{price || 0}</Box>
+                    <Box fontWeight="500">${(count * price).toLocaleString('ar-AR')}</Box>
                 </Stack>
                 <HStack paddingTop={4}>
-                    <Button {...dec} disabled={count <= 0} onClick={() => { if (count > 0) { decrease(product.id) } }}>-</Button>
+                    <Button {...dec} disabled={count <= 0} onClick={() => { if (count > 0) { decrease(id) } }}>-</Button>
                     <Input {...input} />
-                    <Button {...inc} onClick={() => { increase(product.id) }}>+</Button>
+                    <Button {...inc} onClick={() => { increase(id) }}>+</Button>
                 </HStack>
             </Box>
         </Stack>

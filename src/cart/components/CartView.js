@@ -37,12 +37,10 @@ const CartView = (props) => {
                     <DrawerOverlay />
                     <DrawerContent>
                         <DrawerCloseButton />
-                        <DrawerHeader>Create your account</DrawerHeader>
-
+                        <DrawerHeader>Your cart</DrawerHeader>
                         <DrawerBody maxH="100%" overflowY="scroll">
                             <ItemListCart />
                         </DrawerBody>
-
                         <Box paddingY="6" paddingX="5" width="100%">
                             <Divider />
                             <Stack paddingY="4" direction="row" justifyContent="space-between">
@@ -50,11 +48,17 @@ const CartView = (props) => {
                                     Total:
                                 </Box>
                                 <Box fontWeight="600">
-                                    ${total}
+                                    ${total.toLocaleString('ar-Ar')}
                                 </Box>
                             </Stack>
                             <Stack alignItems="center" justifyContent="center" w="100%">
-                                <Button colorScheme="purple" onClick={() => { Boolean(count > 0) && navigate('cart', { replace: true }) }}>
+                                <Button
+                                    disabled={!Boolean(count > 0)}
+                                    colorScheme={'purple'}
+                                    onClick={() => {
+                                        Boolean(count > 0) && navigate('../cart', { replace: true })
+                                    }
+                                    }>
                                     Process to checkout
                                 </Button>
                             </Stack>
@@ -66,7 +70,7 @@ const CartView = (props) => {
             <Stack align="center" position="sticky" bottom={0} marginBottom="5" paddingY={3} >
                 <Box zIndex={2}>
                     <Button colorScheme="purple" onClick={() => { toggleModal(true) }}>
-                        <Text>ver carrito {count} items</Text>
+                        <Text>ver carrito {count ? `${count} items` : ''} </Text>
                     </Button>
                 </Box>
             </Stack>

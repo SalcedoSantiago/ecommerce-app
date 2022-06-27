@@ -1,22 +1,52 @@
+import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import {
-    GridItem,
-    FormControl,
     Stack,
     FormLabel,
     Input,
     Box,
     Button,
     Select,
-    SimpleGrid,
-    Center,
-    Heading
-} from "@chakra-ui/react"
+} from "@chakra-ui/react";
 
+import { useCart } from '../hooks';
 
 
 const Form = () => {
+    const { items } = useCart();
+    const navigate = useNavigate();
+
+    const [formData, setFormData] = useState({
+        name: '',
+        phone: '',
+        email: ''
+    })
+
+    const handleChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        })
+    }
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        if (!Boolean(items.length)) {
+            alert('cart is empty')
+            return;
+        }
+        navigate("/order");
+    }
+
+
     return (
-        <FormControl method="POST">
+        <form
+            method="POST"
+            onChange={handleChange}
+            onSubmit={handleSubmit}
+        >
             <Stack
                 px={4}
                 spacing={6}
@@ -53,7 +83,7 @@ const Form = () => {
                             Email address
                         </FormLabel>
                         <Input
-                            type="text"
+                            type="email"
                             name="email_address"
                             id="email_address"
                             autoComplete="email"
@@ -125,8 +155,6 @@ const Form = () => {
                             htmlFor="city"
                             fontSize="sm"
                             fontWeight="md"
-
-
                         >
                             City
                         </FormLabel>
@@ -204,12 +232,12 @@ const Form = () => {
                 <Button
                     type="submit"
                     colorScheme="purple"
-                    
+
                 >
                     Send
                 </Button>
             </Box>
-        </FormControl>
+        </form>
     )
 }
 

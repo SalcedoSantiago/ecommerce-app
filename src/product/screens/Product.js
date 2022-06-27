@@ -1,5 +1,3 @@
-import { useState, useEffect } from 'react';
-import { data } from '../api';
 import {
     Box,
     Spinner,
@@ -8,16 +6,12 @@ import {
     Text,
     Image,
     Flex,
-    VStack,
     Button,
     Heading,
     SimpleGrid,
     StackDivider,
-    useColorModeValue,
-    VisuallyHidden,
-    List,
-    ListItem,
 } from '@chakra-ui/react';
+import { StarIcon } from "@chakra-ui/icons";
 import { useParams, useNavigate } from 'react-router-dom'
 import { useCart } from '../../cart/hooks';
 import CartView from '../../cart/components/CartView';
@@ -84,6 +78,7 @@ const Product = () => {
                             {product.description}
                         </Text>
                     </Stack>
+                  
                     <Button colorScheme="purple" onClick={() => { add(product) }}>
                         Add to cart
                     </Button>
@@ -101,3 +96,4 @@ const Product = () => {
 }
 
 export default Product;
+

@@ -4,20 +4,26 @@ import { data } from './api';
 const ProductContext = createContext({});
 
 const filtersType = [
+    'default',
     'low',
     'high',
-    'default'
 ]
 
 function ProductProvider({ children }) {
     const [products, setProducts] = useState([]);
-    const [filter, setFilter] = useState('low');
+    const [filter, setFilter] = useState('default');
     const [search, setSearch] = useState('');
     const total = products.length;
 
     useEffect(() => {
         setTimeout(() => {
-            setProducts(data)
+            const productsItems = JSON.parse(window.localStorage.getItem("products"));
+            if (productsItems) {
+                setProducts(productsItems);
+            } else {
+                window.localStorage.setItem("products", JSON.stringify(data));
+                setProducts(data.sort(({ name }) => name))
+            }
         }, 500)
     }, [])
 
@@ -36,7 +42,6 @@ function ProductProvider({ children }) {
     }, [products, filter, search])
 
 
-
     const getProductById = (_id) => {
         const product = products.filter(({ id }) => id == _id)[0];
         return product;
@@ -45,6 +50,7 @@ function ProductProvider({ children }) {
     const value = {
         state: {
             productsList,
+            products,
             total,
             filtersType,
             filter,
@@ -56,8 +62,6 @@ function ProductProvider({ children }) {
             getProductById
         }
     }
-
-
 
     return (
         <ProductContext.Provider
