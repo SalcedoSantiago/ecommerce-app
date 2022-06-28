@@ -37,7 +37,7 @@ const CartView = (props) => {
                     <DrawerOverlay />
                     <DrawerContent>
                         <DrawerCloseButton />
-                        <DrawerHeader>Your cart</DrawerHeader>
+                        <DrawerHeader fontSize="2xl" fontWeight={700}>Cart:</DrawerHeader>
                         <DrawerBody maxH="100%" overflowY="scroll">
                             <ItemListCart />
                         </DrawerBody>

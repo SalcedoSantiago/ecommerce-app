@@ -31,12 +31,12 @@ const Store = () => {
     }
 
     return (
-        <Stack pb={6}>
+        <Stack pb={6}> 
             <Hero />
             <Stack height="100%" flex={1}>
-                <Stack paddingY="5" spacing={12}>
-                    <Stack direction="row" spacing={6} w="100%" >
-                        <Text fontWeight="500" paddingY="2" paddingX="4" display={'inline-block'} >
+                <Stack paddingY="5" spacing={12} >
+                    <Stack direction="row" spacing={6} w="100%">
+                        <Text fontWeight="500" paddingY="2" paddingX="4" display={'inline-block'} minW="100px" >
                             {productsList.length} of {total.toLocaleString('ar-Ar')}
                         </Text>
                         <InputGroup

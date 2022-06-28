@@ -7,6 +7,8 @@ import {
     Image,
 } from '@chakra-ui/react';
 
+import ola from '../../assets/ola.png'
+
 const Hero = () => {
 
     return (
@@ -33,7 +35,8 @@ const Hero = () => {
                         <Image
                             borderRadius='full'
                             boxSize='150px'
-                            fallbackSrc='https://via.placeholder.com/150'
+                            scr={ola}
+                            fallbackSrc={ola}
                             alt='Dan Abramov'
                         />
                     </Flex>

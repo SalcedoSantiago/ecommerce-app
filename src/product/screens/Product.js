@@ -33,9 +33,15 @@ const Product = () => {
     const [count, setCount] = useState(1);
 
     const product = getProductById(id)
+
     const productsRelated = products.filter(({ author, name }) => author == product.author && name != product.name);
 
     useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        });
         setCount(1);
     }, [product])
 
@@ -134,7 +140,7 @@ const Product = () => {
             </SimpleGrid>
             <Heading py={5} fontSize="4xl" fontWeight={600} color="purple.800">Products related</Heading>
             <Box w="full">
-                <ProductList products={Boolean(productsRelated.length) ? productsRelated : products.split(0, 3)} />
+                <ProductList products={Boolean(productsRelated.length) ? productsRelated : products.slice(0, 3)} />
             </Box>
             <Flex justify={'start'} pt={6}>
                 <Button colorScheme="purple" onClick={() => { navigate("/") }} variant='link'>

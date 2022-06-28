@@ -1,18 +1,12 @@
-import gioconda from '../assets/gioconda.jpg';
-import LasMeninas from '../assets/las-meninas.jpg';
-import NocheEstrellada from '../assets/noche-estrellada.jpg';
-import OlaKanagawa from '../assets/ola-kanagawa.jpg';
-
-
 export const data = [
     {
         id: "0",
-        name: 'La Gioconda ',
+        name: 'La Gioconda',
         author: 'Leonardo da Vinci',
         description: 'El retrato de Lisa Gherardini, esposa de Francesco del Giocondo,más conocido como La Gioconda (La Joconde en francés) o Monna Lisa, es una obra pictórica del polímata renacentista italiano Leonardo da Vinci. ',
         price: 2000,
         rate: 2,
-        image: gioconda
+        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Leonardo_da_Vinci_-_Mona_Lisa_%28Louvre%2C_Paris%29.jpg/245px-Leonardo_da_Vinci_-_Mona_Lisa_%28Louvre%2C_Paris%29.jpg'
     },
     {
         id: "1",
@@ -21,7 +15,7 @@ export const data = [
         description: 'Las meninas (como se conoce a esta obra desde el siglo XIX) o La familia de Felipe IV (según se describe en el inventario de 1734) se considera la obra maestra del pintor del Siglo de Oro español Diego Velázquez.',
         price: 100,
         rate: 3,
-        image: LasMeninas
+        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Las_Meninas_01.jpg/245px-Las_Meninas_01.jpg'
     },
     {
         id: "2",
@@ -30,7 +24,7 @@ export const data = [
         description: 'La noche estrellada es un óleo sobre lienzo del pintor postimpresionista neerlandés Vincent van Gogh . Pintado en junio de 1889, representa la vista desde la ventana orientada al este de su habitación de asilo en Saint-Rémy-de-Provence, justo antes del amanecer, con la adición de un pueblo imaginario',
         price: 1500,
         rate: 1,
-        image: NocheEstrellada
+        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/220px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg'
     },
     {
         id: "3",
@@ -39,7 +33,7 @@ export const data = [
         description: 'La gran ola de Kanagawa , también conocida simplemente como La ola o La gran ola, es una famosa estampa japonesa del pintor especialista en ukiyo-e, Katsushika Hokusai, publicada entre 1830 y 1833,Durante el período Edo de la historia de Japón.',
         price: 50000,
         rate: 2,
-        image: OlaKanagawa
+        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Great_Wave_off_Kanagawa2.jpg/300px-Great_Wave_off_Kanagawa2.jpg'
     },
     {
         id: "4",

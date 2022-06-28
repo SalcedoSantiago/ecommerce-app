@@ -7,7 +7,7 @@ import { ProductProvider } from "../../product/context";
 const Layout = ({ children }) => {
     return (
         <ProductProvider>
-            <Flex direction="column" flex={1} height="100vh" position="relative">
+            <Flex direction="column" flex={1} height="100vh" position="relative"  overflowY="scroll">
                 {/* <Box>
                     <Container maxW="6xl" paddingY={2} >
                         <Stack direction="row" align="center" justifyContent="center" paddingY={3} flex={1}>

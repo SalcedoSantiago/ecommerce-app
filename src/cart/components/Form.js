@@ -234,7 +234,7 @@ const Form = () => {
                 <Button
                     type="submit"
                     colorScheme="purple"
-
+                    disabled={items.length <= 0}
                 >
                     Send
                 </Button>
