@@ -1,4 +1,4 @@
-import { Box, Button, Center, Flex, Heading, Stack } from "@chakra-ui/react"
+import { Box, Button, Flex, Heading, Stack } from "@chakra-ui/react"
 import { useCart } from '../hooks';
 import { useNavigate } from "react-router-dom";
 import Form from "../components/Form";
@@ -6,7 +6,7 @@ import ItemListCart from "../components/ItemListCart";
 
 
 const CartScreen = () => {
-    const { items, total } = useCart();
+    const { total } = useCart();
     const navigate = useNavigate();
 
     return (

@@ -14,8 +14,8 @@ const Filters = ({ active, filters, setFilter }) => {
                     paddingX="6"
                     h="auto"
                     fontWeight="500"
-                    background={active == filter ? 'purple.700' : 'white'}
-                    color={active == filter ? 'white' : 'primary.500'}
+                    background={active === filter ? 'purple.700' : 'white'}
+                    color={active === filter ? 'white' : 'primary.500'}
                 >
                     {filter}
                 </Box>

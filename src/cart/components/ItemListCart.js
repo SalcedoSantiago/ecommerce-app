@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Icon, Text } from '@chakra-ui/react'
+import { Box, Flex, Icon, Text } from '@chakra-ui/react'
 import { useCart } from '../hooks';
 import ItemCart from './ItemCart';
 import { WarningIcon } from '@chakra-ui/icons'

@@ -42,7 +42,7 @@ function CartProvider({ children }) {
     const decrease = (id) => {
         if (!cart[id]) return
 
-        if ((cart[id].count - 1) == 0) {
+        if ((cart[id].count - 1) === 0) {
             remove(id);
         } else {
             setCart(produce((cart) => {

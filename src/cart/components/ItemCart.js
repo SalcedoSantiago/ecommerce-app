@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Heading, Image, Stack, Text, HStack, Input, Avatar } from '@chakra-ui/react'
+import { Box, Button, Flex, Heading, Stack, Text, HStack, Input, Avatar } from '@chakra-ui/react'
 
 import {
     useNumberInput,

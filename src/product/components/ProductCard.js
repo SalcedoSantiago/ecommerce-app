@@ -24,12 +24,12 @@ const ProductCard = ({ product }) => {
                     backgroundSize="cover"
                     backgroundPosition="center"
                     width="100%"
-                    height="250px"
+                    height="200px"
                     borderRadius="6"
                     cursor="pointer"
                 />
             </Link>
-            <Stack paddingY={4} direction="column" paddingX="3" background="white">
+            <Stack paddingY={4} direction="column" paddingX="2" background="white">
                 <Heading size='md'>{name || 'No unable'}</Heading>
                 <Text fontWeight="500" color="purple.500">by {author || 'Vicent'}</Text>
                 <Stack direction="row" spacing={1} display="flex" alignItems="center" mt={2}>

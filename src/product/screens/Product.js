@@ -34,7 +34,7 @@ const Product = () => {
 
     const product = getProductById(id)
 
-    const productsRelated = products.filter(({ author, name }) => author == product.author && name != product.name);
+    const productsRelated = products.filter(({ author, name }) => author === product.author && name !== product.name);
 
     useEffect(() => {
         window.scrollTo({

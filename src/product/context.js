@@ -17,8 +17,8 @@ function ProductProvider({ children }) {
 
     useEffect(() => {
         setTimeout(() => {
-            const productsItems = JSON.parse(window.localStorage.getItem("products"));
-            if (Boolean(productsItems.length)) {
+            const productsItems = JSON.parse(window.localStorage.getItem("products")) || [];
+            if (Boolean(productsItems?.length)) {
                 setProducts(productsItems);
             } else {
                 window.localStorage.setItem("products", JSON.stringify(data));
@@ -29,7 +29,7 @@ function ProductProvider({ children }) {
 
 
     const productsList = useMemo(() => {
-        const productFilter = search && products.filter(({ name }) => name.toLowerCase().includes(search.toLowerCase())) || products;
+        const productFilter = search ? products.filter(({ name }) => name.toLowerCase().includes(search.toLowerCase())) : products;
         switch (filter) {
             case 'lowest':
                 return [...productFilter].sort((a, b) => a.price - b.price);
@@ -43,7 +43,7 @@ function ProductProvider({ children }) {
 
 
     const getProductById = (_id) => {
-        const product = products.filter(({ id }) => id == _id)[0];
+        const product = products.filter(({ id }) => id === _id)[0];
         return product;
     }
 

@@ -1,4 +1,4 @@
-import { Spinner, Flex, Stack, Text, Input, Box, InputGroup, InputLeftElement } from '@chakra-ui/react';
+import { Spinner, Flex, Stack, Text, Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
 import { SearchIcon } from '@chakra-ui/icons'
 import Filters from '../components/Filters';
 import ProductList from '../components/ProductList';
@@ -19,10 +19,6 @@ const Store = () => {
         return (
             <Stack pb={6}>
                 <Hero />
-                <Box>
-                    <Text fontWeight="500" paddingY={2}>Search item</Text>
-                    <Input placeholder='Search' value={search} onInput={({ target: { value } }) => setSearch(value)} />
-                </Box>
                 <Flex alignItems="center" justifyContent="center" paddingY={12}>
                     <Spinner color='red.500' />
                 </Flex>
@@ -31,7 +27,7 @@ const Store = () => {
     }
 
     return (
-        <Stack pb={6}> 
+        <Stack pb={6}>
             <Hero />
             <Stack height="100%" flex={1}>
                 <Stack paddingY="5" spacing={12} >
